@@ -1,5 +1,6 @@
 package ru.geekbrains.JavaCoreForAndroid;
 
+import java.util.ArrayList;
 import java.util.Arrays; // в данном примере использую чтобы быстро использовать встроенный метод toString
 /**
  * Сourse: java core for android
@@ -27,6 +28,19 @@ public class Lesson11 {
         SwapTwoArrayElements(testArr2, 1, 2);
         System.out.print("Результат работы метода перестановки:");
         System.out.println(Arrays.toString(testArr2));
+
+        //Задание 2
+        // метод преобразующий обычный массив в ArrayList ( без использования методов библиотек Arrays, т.е. ручками)
+        // Причем в какой конкретно ArrayList не сказано, следовательно нужно решить задачу в контексте обобщений
+        ArrayList<Integer> listArr1 = new ArrayList();
+        convertArrayToArrayList(listArr1, testArr1);
+        System.out.print("Результат работы метода конвертации массива в ArrayList:");
+        System.out.println(listArr1);
+        ArrayList<String> listArr2 = new ArrayList();
+        convertArrayToArrayList(listArr2, testArr2);
+        System.out.print("Результат работы метода конвертации массива в ArrayList:");
+        System.out.println(listArr2);
+
     }
 
     // Метод работает с обобщенным типом данных, теперь ему все равно какой массив придет на вход.
@@ -34,5 +48,11 @@ public class Lesson11 {
         T backupElement = modifiableArray[elemNum1];
         modifiableArray[elemNum1] = modifiableArray[elemNum2];
         modifiableArray[elemNum2] = backupElement;
+    }
+    // Метод работает собобщенным типом данных также как и метод swapTwoArrayElements
+    public static <T> void convertArrayToArrayList(ArrayList<T> listArray, T[] convertedArray) {
+        for (T elem : convertedArray) {
+            listArray.add(elem);
+        }
     }
 }
